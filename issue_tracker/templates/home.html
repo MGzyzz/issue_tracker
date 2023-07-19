@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <form method="post">
+    {% csrf_token %}
+        {% include 'partial/search_form.html'  %}
+
+    {% for task in tasks %}
+<div class="row">
+  <div class="col mb-3">
+    <div class="card text-dark shadow bg-body-tertiary rounder" style="border-radius: 20px">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title">{{ task.summary.capitalize }} ({%if task.status.name == 'New'%}
+            <span class="text-success">{{task.status}}</span>
+            {% elif task.status.name == 'In Progress' %}
+                <span class="text-warning">{{ task.status }}</span>
+            {% elif task.status.name == 'Done' %}
+                <span class="text-info">{{ task.status }}</span>
+            {%endif%})
+        </h5>
+            <div class="d-flex align-items-center">
+                <form method="post" action="{% url 'delete' task.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link link-decoration" onclick="return confirmDelete()" style="padding: 0 0 2px 0; border: 0">
+                        <i class="bi bi-file-earmark-minus"></i>
+                    </button>
+                </form>
+                <a href="{% url 'edit' task.id %}" class="link-decoration"><i class="bi bi-pencil-square me-2 ms-2"></i></a>
+                <a href="{% url 'detail' task.id %}" class="link-decoration"><i class="bi bi-clipboard2"></i></a>
+            </div>
+        </div>
+          <h5>Type: {{ task.type }}</h5>
+        <div class="form-check text-end">
+            <label>
+                 <input type="checkbox" class="form-check-input border-primary" value="{{ task.id }}" name="task">
+            </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+            <button class="btn btn-danger" onclick="return confirmDelete()">Delete</button>
+
+    </form>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{% endblock %}

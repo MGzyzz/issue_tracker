@@ -1,0 +1,35 @@
+<form method="post">
+  {% csrf_token %}
+  <hr>
+
+  {{ form.non_field_errors }}
+
+  <div class="form-group">
+  <label for="id_title">{{ form.title.label|capfirst }}:</label>
+  {% if form.title.errors %}
+    <div class="invalid-feedback">
+      {{ form.title.errors|join:"" }}
+    </div>
+  {% endif %}
+  <input type="text" name="title" id="id_title" class="form-control {% if form.title.errors %}is-invalid{% endif %} mb-2" value="{{ project.title }}">
+</div>
+
+
+  <ul>
+    <li>Summary should not contain more than 30 characters</li>
+    <li>Summary must not contain these characters: №%#$%^&*</li>
+  </ul>
+
+  <label for="id_description">{{ form.description.label|capfirst }}:</label><br/>
+  <textarea name="description" id="id_description" class="form-control {% if form.description.errors %}is-invalid{% endif %} mb-2">{{ form.description.value }}</textarea>
+  {% if form.description.errors %}
+    <div class="invalid-feedback">
+      {{ form.description.errors|join:" " }}
+    </div>
+  {% endif %}
+    <label for="id_start_date">{{ form.start_date.label|capfirst }}:</label>
+    <input type="date" name="start_date" id="id_start_date" class="form-control {% if form.start_date.errors %}is_invalid{% endif %} mb-2" value="{{ project.start_date }}">
+    <label for="id_end_date">{{ form.end_date.label|capfirst }}:</label>
+    <input type="date" name="end_date" id="id_end_date" class="form-control {% if form.end_date.errors %}is_invalid{% endif %} mb-2" value="{{ project.end_date }}">
+  <button type="submit" class="btn btn-info text-white mt-3">{{ text_button }}</button>
+</form>

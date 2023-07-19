@@ -1,0 +1,134 @@
+[
+{
+  "model": "issue_tracker.types",
+  "pk": 1,
+  "fields": {
+    "name": "Task"
+  }
+},
+{
+  "model": "issue_tracker.types",
+  "pk": 2,
+  "fields": {
+    "name": "Bug"
+  }
+},
+{
+  "model": "issue_tracker.types",
+  "pk": 3,
+  "fields": {
+    "name": "Enhancement"
+  }
+},
+{
+  "model": "issue_tracker.status",
+  "pk": 1,
+  "fields": {
+    "name": "New"
+  }
+},
+{
+  "model": "issue_tracker.status",
+  "pk": 2,
+  "fields": {
+    "name": "In Progress"
+  }
+},
+{
+  "model": "issue_tracker.status",
+  "pk": 3,
+  "fields": {
+    "name": "Done"
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 1,
+  "fields": {
+    "summary": "Check_one",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eveniet ex in",
+    "status": 1,
+    "type": 1,
+    "time_of_create": "2023-08-16T08:37:47.817Z",
+    "update_time": "2023-09-16T08:37:47.817Z"
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 2,
+  "fields": {
+    "summary": "Check_two",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eveniet ex in ewkmflemelkmfelkfmkls",
+    "status": 1,
+    "type": 1,
+    "time_of_create": "2023-07-16T08:38:53.292Z",
+    "update_time": "2023-07-16T08:38:53.292Z"
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 3,
+  "fields": {
+    "summary": "Check_three",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eveniet ex in fkkrkrdmslwlmd",
+    "status": 2,
+    "type": 2,
+    "time_of_create": "2023-10-16T08:39:18.484Z",
+    "update_time": "2023-11-16T08:39:18.484Z"
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 4,
+  "fields": {
+    "summary": "Check_four",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eveniet ex in ewkmflemelkrgrldsc",
+    "status": 2,
+    "type": 2,
+    "time_of_create": "2023-07-16T08:40:01.110Z",
+    "update_time": "2023-07-16T08:40:01.110Z"
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 5,
+  "fields": {
+    "summary": "Check_five",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eveniet ex in ewkmflemelkrgrldsc",
+    "status": 3,
+    "type": 3,
+    "time_of_create": "2023-07-16T08:40:17.577Z",
+    "update_time": "2023-07-16T08:40:17.577Z"
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 6,
+  "fields": {
+    "summary": "Check_six",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum eveniet ex in ewkmflemelkrgrldsc",
+    "status": 3,
+    "type": 3,
+    "time_of_create": "2023-09-16T08:40:31.758Z",
+    "update_time": "2023-12-16T08:40:31.758Z"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$hnNf5yYtAD54wJXSjHX4O0$POhSOdnpH9jLiS+XJbDpD2Vm/rAMZJ5XhwWGqHMWQYo=",
+    "last_login": "2023-07-16T08:32:15.067Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-07-11T09:06:24.587Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

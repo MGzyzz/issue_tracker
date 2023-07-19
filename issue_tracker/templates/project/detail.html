@@ -1,0 +1,66 @@
+{% extends 'project/baseProject.html' %}
+{% block content %}
+    {% load static %}
+    <div class="bg-white text-dark shadow p-3 mb-5 bg-body-tertiary rounded">
+<hr>
+    <form method="post">
+    {% csrf_token %}
+        <div class="col-sm-6">
+            <h1>Title: {{ project.title }}</h1>
+            {% if project.description %}
+                <p><b>Description</b>: {{ project.description }}</p>
+                {% else %}
+                <p><b>Description</b>: None</p>
+            {% endif %}
+            <h4>Date of Create: {{ project.start_date }}</h4>
+            <h4>End Date: {{ project.end_date }}</h4>
+        </div>
+        </form>
+    <hr>
+    </div>
+    <hr>
+    {% for task in tasks %}
+        <div class="row">
+  <div class="col mb-3">
+    <div class="card text-dark shadow-lg bg-body-tertiary rounder" style="border-radius: 20px">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title">{{ task.summary.capitalize }} ({%if task.status.name == 'New'%}
+            <span class="text-success">{{task.status}}</span>
+            {% elif task.status.name == 'In Progress' %}
+                <span class="text-warning">{{ task.status }}</span>
+            {% elif task.status.name == 'Done' %}
+                <span class="text-info">{{ task.status }}</span>
+            {%endif%})
+        </h5>
+            <div class="d-flex align-items-center">
+                <form method="post" action="{% url 'delete' task.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link link-decoration" onclick="return confirmDelete()" style="padding: 0 0 2px 0; border: 0">
+                        <i class="bi bi-file-earmark-minus"></i>
+                    </button>
+                </form>
+                <a href="{% url 'edit' task.id %}" class="link-decoration"><i class="bi bi-pencil-square me-2 ms-2"></i></a>
+                <a href="{% url 'detail' task.id %}" class="link-decoration"><i class="bi bi-clipboard2"></i></a>
+            </div>
+        </div>
+          <h5>Type: {{ task.type }}</h5>
+        <div class="form-check text-end">
+            <label>
+                 <input type="checkbox" class="form-check-input border-primary" value="{{ task.id }}" name="task">
+            </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+    <div class="bg-white text-dark shadow p-3 mb-5 bg-body-tertiary rounded">
+    <h2>Create Task in Project "{{ project.title }}"</h2>
+    <form method="post" action="{% url 'add' project.id %}">
+        {% csrf_token %}
+        {% include 'partial/task_form.html' with text_button='add' %}
+    </form>
+</div>
+<script src="{% static 'js/scripts.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'project/baseProject.html' %}
+{% load static %}
+{% block content %}
+<form method="post">
+<h1>Created Project</h1>
+{% include 'partial/project_form.html' with text_button='add' %}
+</form>
+{% endblock %}

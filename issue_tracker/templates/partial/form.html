@@ -1,0 +1,16 @@
+{% for error in form.non_field_errors %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endfor %}
+
+{% for field in form.visible_fields %}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {{ field.label }}
+    {{ field }}
+{% endfor %}
+
+<button type="submit" class="btn btn-success">{{ button_text }}</button>

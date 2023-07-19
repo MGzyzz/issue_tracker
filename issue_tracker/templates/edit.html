@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form method="post">
+<h1>Edit Task</h1>
+{% include 'partial/task_form.html' with text_button='edit' %}
+</form>
+{% endblock %}

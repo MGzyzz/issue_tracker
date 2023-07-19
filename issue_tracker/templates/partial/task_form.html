@@ -1,0 +1,55 @@
+<form method="post">
+  {% csrf_token %}
+  <hr>
+
+  {{ form.non_field_errors }}
+
+  <div class="form-group">
+  <label for="id_summary">{{ form.summary.label|capfirst }}:</label>
+  {% if form.summary.errors %}
+    <div class="invalid-feedback">
+      {{ form.summary.errors|join:"" }}
+    </div>
+  {% endif %}
+  <input type="text" name="summary" id="id_summary" class="form-control {% if form.summary.errors %}is-invalid{% endif %} mb-2" value="{{ task.summary }}">
+</div>
+
+
+  <ul>
+    <li>Summary should not contain more than 30 characters</li>
+    <li>Summary must not contain these characters: №%#$%^&*</li>
+  </ul>
+
+  <label for="id_description">{{ form.description.label|capfirst }}:</label><br/>
+  <textarea name="description" id="id_description" class="form-control {% if form.description.errors %}is-invalid{% endif %} mb-2">{{ form.description.value }}</textarea>
+  {% if form.description.errors %}
+    <div class="invalid-feedback">
+      {{ form.description.errors|join:" " }}
+    </div>
+  {% endif %}
+
+    <input type="hidden" name="project" value="{{ project.id }}">
+  <label for="id_status">{{ form.status.label|capfirst }}:</label>
+  <select name="status" id="id_status" class="form-select mb-3" >
+    {% for sts in form.status.field.choices %}
+      {% if sts.0 == form.status.value %}
+        <option value="{{ sts.0 }}" selected>{{ sts.1 }}</option>
+      {% else %}
+        <option value="{{ sts.0 }}">{{ sts.1 }}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  <label for="id_type">{{ form.type.label|capfirst }}:</label>
+  <select name="type" id="id_type" class="form-select mb-3">
+    {% for tps in form.type.field.choices %}
+      {% if tps.0 == form.type.value %}
+        <option value="{{ tps.0 }}" selected>{{ tps.1 }}</option>
+      {% else %}
+        <option value="{{ tps.0 }}">{{ tps.1 }}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  <button type="submit" class="btn btn-info text-white mt-3">{{ text_button }}</button>
+</form>
