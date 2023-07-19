@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.utils.http import urlencode
 from django.views.generic import TemplateView, View, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from issue_tracker.models.task import Task
 from issue_tracker.models.project import Project
@@ -20,6 +21,16 @@ class Home(ListView):
         self.form = self.get_search_form()
         self.search_value = self.get_search_value()
         return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+
+        context['form'] = self.form
+
+        if self.search_value:
+            context['query'] = urlencode({'search': self.search_value})
+
+        return context
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -119,7 +130,7 @@ class AddProject(CreateView):
     form_class = ProjectForms
 
     def get_success_url(self):
-        return reverse('home_project', kwargs={'id', self.object.id})
+        return reverse('home_project')
 
 
 class DetailProject(DetailView):
