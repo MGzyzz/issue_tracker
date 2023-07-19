@@ -42,6 +42,36 @@
   }
 },
 {
+  "model": "issue_tracker.project",
+  "pk": 1,
+  "fields": {
+    "title": "Check_project_one",
+    "description": "afldsfkl;k;fk",
+    "start_date": "2023-07-19",
+    "end_date": "2023-07-31"
+  }
+},
+{
+  "model": "issue_tracker.project",
+  "pk": 2,
+  "fields": {
+    "title": "afdsfasfdf",
+    "description": "None",
+    "start_date": "2023-07-19",
+    "end_date": null
+  }
+},
+{
+  "model": "issue_tracker.project",
+  "pk": 3,
+  "fields": {
+    "title": "afdsfasfdf",
+    "description": "None",
+    "start_date": "2023-07-19",
+    "end_date": null
+  }
+},
+{
   "model": "issue_tracker.task",
   "pk": 1,
   "fields": {
@@ -50,7 +80,8 @@
     "status": 1,
     "type": 1,
     "time_of_create": "2023-08-16T08:37:47.817Z",
-    "update_time": "2023-09-16T08:37:47.817Z"
+    "update_time": "2023-07-19T08:41:42.687Z",
+    "project": 1
   }
 },
 {
@@ -62,7 +93,8 @@
     "status": 1,
     "type": 1,
     "time_of_create": "2023-07-16T08:38:53.292Z",
-    "update_time": "2023-07-16T08:38:53.292Z"
+    "update_time": "2023-07-19T08:41:46.405Z",
+    "project": 1
   }
 },
 {
@@ -74,7 +106,8 @@
     "status": 2,
     "type": 2,
     "time_of_create": "2023-10-16T08:39:18.484Z",
-    "update_time": "2023-11-16T08:39:18.484Z"
+    "update_time": "2023-07-19T08:41:51.169Z",
+    "project": 1
   }
 },
 {
@@ -86,7 +119,8 @@
     "status": 2,
     "type": 2,
     "time_of_create": "2023-07-16T08:40:01.110Z",
-    "update_time": "2023-07-16T08:40:01.110Z"
+    "update_time": "2023-07-16T08:40:01.110Z",
+    "project": null
   }
 },
 {
@@ -98,7 +132,8 @@
     "status": 3,
     "type": 3,
     "time_of_create": "2023-07-16T08:40:17.577Z",
-    "update_time": "2023-07-16T08:40:17.577Z"
+    "update_time": "2023-07-16T08:40:17.577Z",
+    "project": null
   }
 },
 {
@@ -110,7 +145,99 @@
     "status": 3,
     "type": 3,
     "time_of_create": "2023-09-16T08:40:31.758Z",
-    "update_time": "2023-12-16T08:40:31.758Z"
+    "update_time": "2023-12-16T08:40:31.758Z",
+    "project": null
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 46,
+  "fields": {
+    "summary": "sdfsfs",
+    "description": "dsafa",
+    "status": 2,
+    "type": 1,
+    "time_of_create": "2023-07-19T11:23:55.500Z",
+    "update_time": "2023-07-19T11:23:55.500Z",
+    "project": 1
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 47,
+  "fields": {
+    "summary": "afdfs",
+    "description": "None",
+    "status": 1,
+    "type": 2,
+    "time_of_create": "2023-07-19T11:25:03.500Z",
+    "update_time": "2023-07-19T11:25:03.500Z",
+    "project": 1
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 48,
+  "fields": {
+    "summary": "afdfs",
+    "description": "None",
+    "status": 1,
+    "type": 2,
+    "time_of_create": "2023-07-19T11:26:15.817Z",
+    "update_time": "2023-07-19T11:26:15.817Z",
+    "project": 1
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 49,
+  "fields": {
+    "summary": "Check_one",
+    "description": "None",
+    "status": 1,
+    "type": 2,
+    "time_of_create": "2023-07-19T11:34:27.961Z",
+    "update_time": "2023-07-19T11:34:27.962Z",
+    "project": 1
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 50,
+  "fields": {
+    "summary": "sddad",
+    "description": "None",
+    "status": 1,
+    "type": 2,
+    "time_of_create": "2023-07-19T11:51:16.039Z",
+    "update_time": "2023-07-19T11:51:16.039Z",
+    "project": 1
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 51,
+  "fields": {
+    "summary": "фвфаыа",
+    "description": "None",
+    "status": 3,
+    "type": 2,
+    "time_of_create": "2023-07-19T12:14:58.075Z",
+    "update_time": "2023-07-19T12:14:58.075Z",
+    "project": 1
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 52,
+  "fields": {
+    "summary": "фыафав",
+    "description": "None",
+    "status": 2,
+    "type": 3,
+    "time_of_create": "2023-07-19T14:36:42.229Z",
+    "update_time": "2023-07-19T14:36:42.229Z",
+    "project": 2
   }
 },
 {
