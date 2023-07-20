@@ -46,7 +46,7 @@
   "pk": 1,
   "fields": {
     "title": "Check_project_one",
-    "description": "afldsfkl;k;fk",
+    "description": "This is project one",
     "start_date": "2023-07-19",
     "end_date": "2023-07-31"
   }
@@ -286,7 +286,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$hnNf5yYtAD54wJXSjHX4O0$POhSOdnpH9jLiS+XJbDpD2Vm/rAMZJ5XhwWGqHMWQYo=",
-    "last_login": "2023-07-16T08:32:15.067Z",
+    "last_login": "2023-07-20T08:49:00.379Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
