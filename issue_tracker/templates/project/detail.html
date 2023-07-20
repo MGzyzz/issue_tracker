@@ -20,6 +20,7 @@
     </div>
     <hr>
     {% for task in tasks %}
+        {% if not task.is_deleted %}
         <div class="row">
   <div class="col mb-3">
     <div class="card text-dark shadow-lg bg-body-tertiary rounder" style="border-radius: 20px">
@@ -54,6 +55,7 @@
     </div>
   </div>
 </div>
+        {% endif %}
     {% endfor %}
     <div class="bg-white text-dark shadow p-3 mb-5 bg-body-tertiary rounded">
     <h2>Create Task in Project "{{ project.title }}"</h2>
