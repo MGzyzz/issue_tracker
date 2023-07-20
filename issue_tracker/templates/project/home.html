@@ -11,13 +11,6 @@
             <h5 class="card-title">{{ project.title.capitalize }} ({{ project.start_date }})
         </h5>
             <div class="d-flex align-items-center">
-                <form method="post" action="{% url 'delete' project.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-link link-decoration" onclick="return confirmDelete()" style="padding: 0 0 2px 0; border: 0">
-                        <i class="bi bi-file-earmark-minus"></i>
-                    </button>
-                </form>
-                <a href="#" class="link-decoration"><i class="bi bi-pencil-square me-2 ms-2"></i></a>
                 <a href="{% url 'detail_project' project.id %}" class="link-decoration"><i class="bi bi-clipboard2"></i></a>
             </div>
         </div>
