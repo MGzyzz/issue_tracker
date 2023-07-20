@@ -41,13 +41,9 @@ class Home(ListView):
 
         return qs
 
-
-
-    def render_to_response(self, context, **response_kwargs):
-        if self.search_value and not context['tasks']:
-            raise Http404("Задачи не найдены")
-
-        return super().render_to_response(context, **response_kwargs)
+    def get_allow_empty(self):
+        allow_empty = True
+        return allow_empty
 
     def get_search_form(self):
         return SearchForm(self.request.GET)
@@ -98,34 +94,26 @@ class Edit(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['project'] = self.object.project
         return context
+
 
 
 class Delete(DeleteView):
     model = Task
     template_name = 'home.html'
     context_object_name = 'task'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('home_project')
     pk_url_kwarg = 'id'
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_deleted = True
+        self.object.save()
+        return self.form_valid(self.get_form())
 
-
-
-class TaskEditView(FormView):
-    template_name = 'edit.html'
-    form_class = TaskForms
-
-    def dispatch(self, request, *args, **kwargs):
-        self.task = get_object_or_404(self.form_class.Meta.model, id=kwargs.get('id'))
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(task=self.task, **kwargs)
-
-    def get_initial(self):
-        initial = self.task.__dict__
-        print(initial)
-        initial['tags'] = self.task.tags.all()
+    def form_valid(self, form):
+        return redirect(self.success_url)
 
 
 class HomeProject(ListView):
@@ -147,6 +135,8 @@ class AddProject(CreateView):
 
     def get_success_url(self):
         return reverse('home_project')
+
+
 
 
 class DetailProject(DetailView):
