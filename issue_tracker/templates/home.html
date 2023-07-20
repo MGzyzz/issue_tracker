@@ -5,7 +5,8 @@
 
     {% if tasks %}
         {% for task in tasks %}
-            <div class="row">
+            {% if not task.is_deleted %}
+                   <div class="row">
                 <div class="col mb-3">
                     <div class="card text-dark shadow bg-body-tertiary rounder" style="border-radius: 20px">
                         <div class="card-body">
@@ -41,6 +42,9 @@
                     </div>
                 </div>
             </div>
+                {% else %}
+            {% endif %}
+
         {% endfor %}
         <button class="btn btn-danger" onclick="return confirmDelete()">Delete</button>
     {% else %}
