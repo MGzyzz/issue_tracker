@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
@@ -40,12 +41,21 @@ class Home(ListView):
 
         return qs
 
+
+
+    def render_to_response(self, context, **response_kwargs):
+        if self.search_value and not context['tasks']:
+            raise Http404("Задачи не найдены")
+
+        return super().render_to_response(context, **response_kwargs)
+
     def get_search_form(self):
         return SearchForm(self.request.GET)
 
     def get_search_value(self):
         if self.form.is_valid():
-            return self.form.cleaned_data.get('search')
+            return self.form.cleaned_data.get('search_query')
+
 
 
 class Detail(DetailView):
@@ -56,18 +66,24 @@ class Detail(DetailView):
 
 
 class Add(CreateView):
-    template_name = 'add.html'
+    template_name = 'project/detail.html'
     model = Task
     form_class = TaskForms
 
-
     def get_success_url(self):
-        return reverse('detail_project', kwargs={'id': self.kwargs['id']})
+        return reverse_lazy('detail_project', kwargs={'id': self.kwargs['id']})
 
-    def get_initial(self):
-        initial = super().get_initial()
-        initial['project'] = self.kwargs['id']
-        return initial
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['project'] = Project.objects.get(id=self.kwargs['id'])
+        context['tasks'] = Task.objects.filter(project=context['project'])
+        return context
+
+
+    def form_valid(self, form):
+        form.instance.project_id = self.kwargs['id']
+        return super().form_valid(form)
+
 
 
 class Edit(UpdateView):
@@ -146,3 +162,4 @@ class DetailProject(DetailView):
         context['tasks'] = tasks
         context['form'] = TaskForms
         return context
+
