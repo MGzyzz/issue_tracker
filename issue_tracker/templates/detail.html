@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     {% load static %}
-    <div class="bg-white text-dark shadow p-3 mb-5 bg-body-tertiary rounded">
+   {% if task.is_deleted %}
+        <h1>Ошибка 404</h1>
+       {% else %}
+        <div class="bg-white text-dark shadow p-3 mb-5 bg-body-tertiary rounded">
 <hr>
     <form method="post">
     {% csrf_token %}
@@ -23,5 +26,6 @@
         </form>
     <hr>
     </div>
+   {% endif %}
 <script src="{% static 'js/scripts.js' %}"></script>
 {% endblock %}
