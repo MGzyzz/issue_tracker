@@ -7,8 +7,8 @@ class TaskForms(forms.ModelForm):
     summary = forms.CharField(required=True, validators=[at_lest], label='summary')
     description = forms.CharField(required=False, validators=[limit_words_description], label='description')
     project = forms.ModelChoiceField(queryset=Project.objects.all(), label='project')
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), label='status')
-    type = forms.ModelChoiceField(queryset=Types.objects.all(), label='type')
+    status = forms.ModelChoiceField(queryset=Status.objects.all(), label='status', required=True)
+    type = forms.ModelChoiceField(queryset=Types.objects.all(), label='type', required=True)
 
     class Meta:
         model = Task
@@ -37,12 +37,12 @@ class ProjectForms(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    search = forms.CharField(
+    search_query = forms.CharField(
         max_length=100,
         required=False,
         label='Найти',
         widget=forms.TextInput(attrs={
-            'class': 'form-control my-3',
+            'class': 'form-control mb-3',
             'placeholder': 'enter search value'
         })
     )
