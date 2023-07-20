@@ -162,4 +162,3 @@ class DetailProject(DetailView):
         context['tasks'] = tasks
         context['form'] = TaskForms
         return context
-
