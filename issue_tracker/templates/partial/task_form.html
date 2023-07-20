@@ -39,8 +39,7 @@
       {% endif %}
     {% endfor %}
   </select>
-
-  <label for="id_type">{{ form.type.label|capfirst }}:</label>
+    <label for="id_type">{{ form.type.label|capfirst }}:</label>
   <select name="type" id="id_type" class="form-select mb-3 required">
     {% for tps in form.type.field.choices %}
       {% if tps.0 == form.type.value %}
