@@ -19,10 +19,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from issue_tracker import views
+from accounts import views as account_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home.as_view(), name='home'),
+    path('auth/login', account_views.LoginView.as_view(), name='login'),
+    path('auth/logout', account_views.LogoutView.as_view(), name='logout'),
     path('detail/<int:id>', views.Detail.as_view(), name='detail'),
     path('project/<int:id>/add', views.Add.as_view(), name='add'),
     path('edit/<int:id>', views.Edit.as_view(), name='edit'),
