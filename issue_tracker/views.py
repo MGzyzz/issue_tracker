@@ -129,7 +129,7 @@ class HomeProject(ListView):
         return Project.objects.all().order_by('start_date')
 
 
-class AddProject(CreateView):
+class AddProject(LoginRequiredMixin, CreateView):
     template_name = 'project/add.html'
     model = Project
 
