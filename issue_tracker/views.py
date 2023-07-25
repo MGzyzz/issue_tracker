@@ -8,6 +8,8 @@ from issue_tracker.models.task import Task
 from issue_tracker.models.project import Project
 from issue_tracker.models.types_and_statuses import Status, Types
 from .forms import TaskForms, ProjectForms, SearchForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create your views here.
 
 
@@ -61,7 +63,7 @@ class Detail(DetailView):
     pk_url_kwarg = 'id'
 
 
-class Add(CreateView):
+class Add(LoginRequiredMixin, CreateView):
     template_name = 'project/detail.html'
     model = Task
     form_class = TaskForms
@@ -82,7 +84,7 @@ class Add(CreateView):
 
 
 
-class Edit(UpdateView):
+class Edit(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'edit.html'
     form_class = TaskForms
@@ -99,7 +101,7 @@ class Edit(UpdateView):
 
 
 
-class Delete(DeleteView):
+class Delete(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = 'home.html'
     context_object_name = 'task'
