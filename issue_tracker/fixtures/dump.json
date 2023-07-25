@@ -282,11 +282,11 @@
   }
 },
 {
-  "model": "auth.user",
+  "model": "accounts.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$600000$hnNf5yYtAD54wJXSjHX4O0$POhSOdnpH9jLiS+XJbDpD2Vm/rAMZJ5XhwWGqHMWQYo=",
-    "last_login": "2023-07-20T08:49:00.379Z",
+    "password": "pbkdf2_sha256$600000$D0UUxa1413yu7MmNutkBL8$5idkmLLEvPgFQPlujNyn2snf1WXiyrSxzW+U5VFqhQc=",
+    "last_login": "2023-07-25T17:22:11.367Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -294,7 +294,7 @@
     "email": "",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2023-07-11T09:06:24.587Z",
+    "date_joined": "2023-07-25T17:19:38.887Z",
     "groups": [],
     "user_permissions": []
   }
