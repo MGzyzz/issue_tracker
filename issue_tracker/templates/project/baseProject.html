@@ -20,9 +20,11 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href='{% url 'home' %}'>Home</a>
         </li>
+          {% if user.is_authenticated %}
           <li class="nav-item">
           <a class="nav-link" href='{% url 'add_project' %}'>Add new project</a>
         </li>
+          {% endif %}
           <li class="nav-item">
           <a class="nav-link text-info" href='{% url 'home' %}'>Tasks</a>
         </li>
