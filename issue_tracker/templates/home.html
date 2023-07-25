@@ -22,6 +22,7 @@
                                 )
                                 </h5>
                                 <div class="d-flex align-items-center">
+                                    {% if user.is_authenticated %}
                                     <form method="post" action="{% url 'delete' task.id %}">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-link link-decoration" onclick="return confirmDelete()" style="padding: 0 0 2px 0; border: 0">
@@ -29,6 +30,8 @@
                                         </button>
                                     </form>
                                     <a href="{% url 'edit' task.id %}" class="link-decoration"><i class="bi bi-pencil-square me-2 ms-2"></i></a>
+                                            {% endif %}
+
                                     <a href="{% url 'detail' task.id %}" class="link-decoration"><i class="bi bi-clipboard2"></i></a>
                                 </div>
                             </div>

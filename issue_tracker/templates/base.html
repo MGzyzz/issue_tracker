@@ -27,6 +27,35 @@
           <a class="nav-link text-warning" href='{% url 'home_project' %}'>Project</a>
         </li>
       </ul>
+        <ul class="navbar-nav ms-auto">
+    {% if user.is_authenticated %}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+            {{ user.username }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <label class="w-100">
+                        <input class="dropdown-item text-danger" value="Logout" type="submit">
+                    </label>
+                </form>
+            </li>
+        </ul>
+    </li>
+        {% else %}
+           <li class="nav-item">
+          <a class="nav-link btn btn-info text-white ms-2" href="{% url 'login' %}">Login</a>
+        </li>
+            {% endif %}
+      </ul>
     </div>
   </div>
 </nav>
