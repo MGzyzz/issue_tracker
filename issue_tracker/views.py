@@ -1,15 +1,14 @@
 from django.db.models import Q
-from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
 from django.views.generic import TemplateView, View, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from issue_tracker.models.task import Task
 from issue_tracker.models.project import Project
-from issue_tracker.models.types_and_statuses import Status, Types
 from .forms import TaskForms, ProjectForms, SearchForm
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from accounts.models import User
+from accounts.forms import RegisterForm
 # Create your views here.
 
 
@@ -63,10 +62,12 @@ class Detail(DetailView):
     pk_url_kwarg = 'id'
 
 
-class Add(LoginRequiredMixin, CreateView):
+class Add(PermissionRequiredMixin, CreateView):
     template_name = 'project/detail.html'
     model = Task
     form_class = TaskForms
+    permission_required = 'issue_tracker.add_task'
+    permission_denied_message = 'You have no rights'
 
     def get_success_url(self):
         return reverse_lazy('detail_project', kwargs={'id': self.kwargs['id']})
@@ -84,7 +85,7 @@ class Add(LoginRequiredMixin, CreateView):
 
 
 
-class Edit(LoginRequiredMixin, UpdateView):
+class Edit(UserPassesTestMixin, UpdateView):
     model = Task
     template_name = 'edit.html'
     form_class = TaskForms
@@ -94,6 +95,10 @@ class Edit(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('detail', kwargs={'id': self.object.id})
 
+    def test_func(self):
+        return self.request.user in self.get_object().project.users.all()
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['project'] = self.object.project
@@ -101,12 +106,17 @@ class Edit(LoginRequiredMixin, UpdateView):
 
 
 
-class Delete(LoginRequiredMixin, DeleteView):
+class Delete(UserPassesTestMixin, DeleteView):
     model = Task
     template_name = 'home.html'
     context_object_name = 'task'
     success_url = reverse_lazy('home_project')
     pk_url_kwarg = 'id'
+    permission_required = 'issue_tracker.delete_task'
+    permission_denied_message = 'You do not have permission to delete this task.'
+
+    def test_func(self):
+        return self.request.user in self.get_object().project.users.all()
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -154,3 +164,53 @@ class DetailProject(DetailView):
         context['tasks'] = tasks
         context['form'] = TaskForms
         return context
+
+
+class ListUserInProject(PermissionRequiredMixin, ListView):
+    template_name = 'project/information_users_In_project.html'
+    context_object_name = 'Users'
+    model = User
+    permission_required = 'accounts.view_user'
+    permission_denied_message = 'You have no rights'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        project_id = self.kwargs['id']
+
+        project = get_object_or_404(Project, id=project_id)
+        context['project'] = project
+        return context
+
+
+class AddUserInProject(DetailView):
+    template_name = 'project/information_users_In_project.html'
+    model = User
+
+    def post(self, request, *args, **kwargs):
+        user_id = request.POST.get('user_id')
+        project_id = self.kwargs['id']
+        project = get_object_or_404(Project, id=project_id)
+        project.users.add(user_id)
+        return redirect('list-user-project', project_id)
+
+
+
+class DeleteUserProject(UserPassesTestMixin, DeleteView):
+    model = Project
+    template_name = 'project/information_users_In_project.html'
+    pk_url_kwarg = 'id'
+    permission_required = 'accounts.delete_user'
+    permission_denied_message = 'You do not have permission to delete this user.'
+
+    def test_func(self):
+        return self.request.user in self.get_object().users.all()
+
+    def get_success_url(self):
+        return reverse_lazy('list-user-project', kwargs={'id': self.kwargs['id']})
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        user_id = request.POST.get('user_id')
+        self.object.users.remove(user_id)
+        return redirect(self.get_success_url())
+
