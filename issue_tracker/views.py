@@ -2,13 +2,13 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
-from django.views.generic import TemplateView, View, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, View, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView, \
+    RedirectView
 from issue_tracker.models.task import Task
 from issue_tracker.models.project import Project
 from .forms import TaskForms, ProjectForms, SearchForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from accounts.models import User
-from accounts.forms import RegisterForm
 # Create your views here.
 
 
@@ -112,8 +112,7 @@ class Delete(UserPassesTestMixin, DeleteView):
     context_object_name = 'task'
     success_url = reverse_lazy('home_project')
     pk_url_kwarg = 'id'
-    permission_required = 'issue_tracker.delete_task'
-    permission_denied_message = 'You do not have permission to delete this task.'
+
 
     def test_func(self):
         return self.request.user in self.get_object().project.users.all()
@@ -149,8 +148,6 @@ class AddProject(LoginRequiredMixin, CreateView):
         return reverse('home_project')
 
 
-
-
 class DetailProject(DetailView):
     template_name = 'project/detail.html'
     model = Project
@@ -164,6 +161,32 @@ class DetailProject(DetailView):
         context['tasks'] = tasks
         context['form'] = TaskForms
         return context
+
+class EditProject(UserPassesTestMixin, UpdateView):
+    model = Project
+    template_name = 'project/edit.html'
+    form_class = ProjectForms
+    context_object_name = 'project'
+    pk_url_kwarg = 'id'
+
+    def get_success_url(self):
+        return reverse('detail_project', kwargs={'id': self.object.id})
+
+    def test_func(self):
+        return self.request.user in self.get_object().users.all()
+
+
+class DeleteProject(UserPassesTestMixin, DeleteView):
+    model = Project
+    template_name = 'project/home.html'
+    context_object_name = 'project'
+    success_url = reverse_lazy('home_project')
+    pk_url_kwarg = 'id'
+
+    def test_func(self):
+        return self.request.user in self.get_object().users.all()
+
+
 
 
 class ListUserInProject(PermissionRequiredMixin, ListView):
