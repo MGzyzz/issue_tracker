@@ -20,5 +20,7 @@ class Project(models.Model):
         null=True, blank=True, verbose_name='End Date'
     )
 
+    users = models.ManyToManyField('accounts.User')
+
     def __str__(self):
         return self.title
