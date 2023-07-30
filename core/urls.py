@@ -17,20 +17,12 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from issue_tracker import views
-from accounts import views as account_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', include('accounts.urls')),
     path('', views.Home.as_view(), name='home'),
-    path('auth/login', account_views.LoginView.as_view(), name='login'),
-    path('auth/logout', account_views.LogoutView.as_view(), name='logout'),
-    path('detail/<int:id>', views.Detail.as_view(), name='detail'),
-    path('project/<int:id>/add', views.Add.as_view(), name='add'),
-    path('edit/<int:id>', views.Edit.as_view(), name='edit'),
-    path('<int:id>/delete', views.Delete.as_view(), name='delete'),
-    path('project/', views.HomeProject.as_view(), name='home_project'),
-    path('project/<int:id>', views.DetailProject.as_view(), name='detail_project'),
-    path('project/add/', views.AddProject.as_view(), name='add_project')
+    path('', include('issue_tracker.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
