@@ -48,7 +48,11 @@
     "title": "Check_project_one",
     "description": "This is project one",
     "start_date": "2023-07-19",
-    "end_date": "2023-07-31"
+    "end_date": "2023-07-31",
+    "users": [
+      1,
+      16
+    ]
   }
 },
 {
@@ -58,7 +62,11 @@
     "title": "Check_project_two",
     "description": "None",
     "start_date": "2023-07-20",
-    "end_date": null
+    "end_date": null,
+    "users": [
+      1,
+      17
+    ]
   }
 },
 {
@@ -68,7 +76,11 @@
     "title": "Check_project_three",
     "description": "This is check project",
     "start_date": "2023-07-20",
-    "end_date": "2023-07-30"
+    "end_date": "2023-07-30",
+    "users": [
+      1,
+      18
+    ]
   }
 },
 {
@@ -282,6 +294,48 @@
   }
 },
 {
+  "model": "issue_tracker.task",
+  "pk": 81,
+  "fields": {
+    "summary": "sadfasdfas",
+    "description": "sadfasf",
+    "status": 1,
+    "type": 1,
+    "time_of_create": "2023-07-30T08:30:18.710Z",
+    "update_time": "2023-07-30T10:26:38.048Z",
+    "project": 8,
+    "is_deleted": true
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 87,
+  "fields": {
+    "summary": "Check_one",
+    "description": "sdaf",
+    "status": 2,
+    "type": 1,
+    "time_of_create": "2023-07-30T10:24:29.360Z",
+    "update_time": "2023-07-30T10:24:43.073Z",
+    "project": 8,
+    "is_deleted": true
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 88,
+  "fields": {
+    "summary": "sdfsafdsa",
+    "description": "sdfa",
+    "status": 1,
+    "type": 2,
+    "time_of_create": "2023-07-30T10:29:56.586Z",
+    "update_time": "2023-07-30T10:42:54.574Z",
+    "project": 8,
+    "is_deleted": true
+  }
+},
+{
   "model": "accounts.user",
   "pk": 1,
   "fields": {
@@ -297,6 +351,115 @@
     "date_joined": "2023-07-25T17:19:38.887Z",
     "groups": [],
     "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 16,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Developer",
+    "first_name": "Developer",
+    "last_name": "Check",
+    "email": "Developer@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-07-30T16:29:55Z",
+    "groups": [
+      2
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 17,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Team_Lead",
+    "first_name": "Team",
+    "last_name": "Lead",
+    "email": "Team_Lead@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-07-30T16:30:47Z",
+    "groups": [
+      4
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 18,
+  "fields": {
+    "password": "123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Project_Manager",
+    "first_name": "Project",
+    "last_name": "Manager",
+    "email": "Project_Manager@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-07-30T16:31:59Z",
+    "groups": [
+      1
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "Project Manager",
+    "permissions": [
+      41,
+      42,
+      43,
+      44,
+      1,
+      37,
+      38,
+      39,
+      40,
+      33,
+      34,
+      35,
+      36
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "Developer",
+    "permissions": [
+      33,
+      34
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 4,
+  "fields": {
+    "name": "Team Lead",
+    "permissions": [
+      41,
+      43,
+      44,
+      33,
+      34,
+      35,
+      36
+    ]
   }
 }
 ]
