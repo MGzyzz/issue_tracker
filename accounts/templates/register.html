@@ -3,12 +3,8 @@
 {% block content %}
         <h1 class="text-center my-3">Registration</h1>
 
-    <form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    {% if request.GET.next %}
-        <input type="hidden" name="next" value="{{ request.GET.next }}">
-    {% endif %}
-    {% include 'partial/form.html' with button_text='Login' %}
-</form>
-
+    <form action="{% url 'register' %}?next={{ request.GET.next }}" method="post">
+        {% csrf_token %}
+        {% include 'partial/form.html' with button_text='Register' %}
+    </form>
 {% endblock %}
