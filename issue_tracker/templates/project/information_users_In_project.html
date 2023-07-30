@@ -1,0 +1,49 @@
+{% extends 'project/baseProject.html' %}
+
+{% block content %}
+    <h1>User in project</h1>
+    <hr>
+    <table class="table text-black bg-white">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Name Project</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in Users %}
+    <tr>
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.username }}</td>
+            {% if user in project.users.all %}
+            <td>{{ project.title }}</td>
+                {% else %}
+                <td>None</td>
+            {% endif %}
+        <td>
+            {% if perms.accounts.delete_user and perms.accounts.add_user and not user == request.user %}
+    {% if user not in project.users.all %}
+        <form action="{% url 'add-user-project' project.id %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-success" name="user_id" value="{{ user.id }}">Add</button>
+        </form>
+    {% else %}
+        <form action="{% url 'delete-user-project' project.id %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger" name="user_id" value="{{ user.id }}">Delete</button>
+        </form>
+    {% endif %}
+{% endif %}
+
+        </td>
+    </tr>
+            {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
