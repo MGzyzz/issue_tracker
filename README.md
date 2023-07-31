@@ -1,15 +1,19 @@
 Для удобства я написал логины и пароли всех нужны пользователей, а также каким проектам каждый из пользователей привязан
 -
 
-Login: Developer \
+Login: dev \
 Password: root1234 \
 Project: Check_project_one
 
-Login: Team_Lead \
-Password: root1234 \ 
+Login: lead \
+Password: root1234 \
 Project: Check_project_three
 
-Login: Project_Manager \
+Login: manager \
 Password: root1234 \
 Project: 
 
+Примечания:
+-
+Из-за странной функциональности панели админа, я не мог нормально входить за определенного пользователя на сайт,
+т.ч пришлось делать через регистрацию сайта
