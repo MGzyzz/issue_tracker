@@ -138,9 +138,11 @@ class HomeProject(ListView):
         return Project.objects.all().order_by('start_date')
 
 
-class AddProject(LoginRequiredMixin, CreateView):
+class AddProject(PermissionRequiredMixin, CreateView):
     template_name = 'project/add.html'
     model = Project
+    permission_required = 'issue_tracker.add_project'
+    permission_denied_message = 'You have no rights'
 
     form_class = ProjectForms
 
@@ -176,15 +178,14 @@ class EditProject(UserPassesTestMixin, UpdateView):
         return self.request.user in self.get_object().users.all()
 
 
-class DeleteProject(UserPassesTestMixin, DeleteView):
+class DeleteProject(PermissionRequiredMixin, DeleteView):
     model = Project
     template_name = 'project/home.html'
     context_object_name = 'project'
     success_url = reverse_lazy('home_project')
     pk_url_kwarg = 'id'
-
-    def test_func(self):
-        return self.request.user in self.get_object().users.all()
+    permission_required = 'issue_tracker.delete_project'
+    permission_denied_message = 'You have no rights'
 
 
 
