@@ -2340,6 +2340,123 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 181,
+  "fields": {
+    "action_time": "2023-07-31T09:41:12.337Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "4",
+    "object_repr": "Team Lead",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 182,
+  "fields": {
+    "action_time": "2023-07-31T09:41:48.396Z",
+    "user": 1,
+    "content_type": 3,
+    "object_id": "4",
+    "object_repr": "Team Lead",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 183,
+  "fields": {
+    "action_time": "2023-07-31T09:45:00.609Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "25",
+    "object_repr": "safsadfsaf",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 184,
+  "fields": {
+    "action_time": "2023-07-31T09:45:00.615Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "24",
+    "object_repr": "sfafas",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 185,
+  "fields": {
+    "action_time": "2023-07-31T09:45:00.617Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "23",
+    "object_repr": "ssafsfs",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 186,
+  "fields": {
+    "action_time": "2023-07-31T09:46:25.420Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "20",
+    "object_repr": "Dev",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 187,
+  "fields": {
+    "action_time": "2023-07-31T09:46:45.413Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "21",
+    "object_repr": "manager",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 188,
+  "fields": {
+    "action_time": "2023-07-31T09:47:01.363Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "22",
+    "object_repr": "lead",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 189,
+  "fields": {
+    "action_time": "2023-07-31T09:47:07.161Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "20",
+    "object_repr": "dev",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -2777,7 +2894,6 @@
       41,
       43,
       44,
-      37,
       40,
       33,
       34,
@@ -2892,10 +3008,26 @@
 },
 {
   "model": "sessions.session",
+  "pk": "6qckuybarp1cz16m5s4634pbsod7pyjg",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-7DoOJT1nsNa7Dg6gRIqTCnF3iJQC2jcz76USbWtNWytLGkWdlbPq9Dtm4keZdiJ3mm6z5nlalzHrXdEHbfo6S3leDvfvoFKr35qdWIYeg3HYB5-9ZALC2BGjzYIS-zB0A0rAYA0MUBidgWzAR9t5Vu8P-rU3cA:1qQPUp:AlE-amL5j4exRGmgThgXNvsmpoAxx2rvpoKIqzXR-n4",
+    "expire_date": "2023-08-14T09:47:23.447Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "7oe1s53jniw08q6t0u99q738ccuim9ls",
   "fields": {
     "session_data": "e30:1qPg4B:SNwgFlNfUXzdMFVaeqrPCjnYoBGzLVuCrbPLscj6PRg",
     "expire_date": "2023-08-12T09:16:51.644Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7xoaszn85bp71kdsr3e1phoouij5stke",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-7DoOJT1nsNa7Dg6gRIqTCnF3iJQC2jcz76USbWtNWytLGkWdlbPq9Dtm4keZdiJ3mm6z5nlalzHrXdEHbfo6S3leDvfvoFKr35qdWIYeg3HYB5-9ZALC2BGjzYIS-zB0A0rAYA0MUBidgWzAR9t5Vu8P-rU3cA:1qQOxq:fRldSFw86IWmwgoeyS4eBUJJ9xD5Mn-kdp7qcjWzyh4",
+    "expire_date": "2023-08-14T09:13:18.682Z"
   }
 },
 {
@@ -2920,6 +3052,22 @@
   "fields": {
     "session_data": "e30:1qPfvl:PefKjVLCSJopSFLSsXWZAReL00UNpe6OSnBN1LNWE74",
     "expire_date": "2023-08-12T09:08:09.331Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bsejtygev45h2k5u9vn273wkvxr147o4",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHDYyi4dO83EGBAqgaS0q6M_65NutDtPefcF_NhW6vfRl78TOzMBDv9bjGkR247oHtot85Tb-syR74r_KCDXzvl5-Vw_w5qGPVba9LKqYKEoAqQk-AEJAmENkdLkeRUhMUIBqSWxpTgCgpbJhSAkB17fwDE0Dbg:1qQPG1:r9oE8zMJ8wzmu_s2PsX5Tuvvg1BdlNAc6ZNfxGXxFhw",
+    "expire_date": "2023-08-14T09:32:05.178Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fd61i35i99uvsjlbbka0v49gj4mxwr64",
+  "fields": {
+    "session_data": "e30:1qQOZJ:_y1qKID_HsDd9MPUUh5uA5DL0gto3CcXE3M7QfZs5EA",
+    "expire_date": "2023-08-14T08:47:57.399Z"
   }
 },
 {
@@ -3373,7 +3521,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$D0UUxa1413yu7MmNutkBL8$5idkmLLEvPgFQPlujNyn2snf1WXiyrSxzW+U5VFqhQc=",
-    "last_login": "2023-07-25T17:22:11.367Z",
+    "last_login": "2023-07-31T09:44:45.830Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -3391,9 +3539,9 @@
   "pk": 20,
   "fields": {
     "password": "pbkdf2_sha256$600000$f9jTCUdXHnMOqJ8JU2kHFI$YKGxR21vCMC4v6oE2FwYRcFDl7Saj87l1tcFm9iYWlA=",
-    "last_login": "2023-07-31T08:38:19.454Z",
+    "last_login": "2023-07-31T09:43:35Z",
     "is_superuser": false,
-    "username": "Developer",
+    "username": "dev",
     "first_name": "Developer",
     "last_name": "Project",
     "email": "Developer@mail.ru",
@@ -3411,9 +3559,9 @@
   "pk": 21,
   "fields": {
     "password": "pbkdf2_sha256$600000$gSJiILjPMc5VPtrR0VbrRf$L9Qi7NoYlrXiza2GDrMf7VILqyOjoQH96igwTcX6XcM=",
-    "last_login": "2023-07-31T08:31:08.458Z",
+    "last_login": "2023-07-31T09:47:23.446Z",
     "is_superuser": false,
-    "username": "Project_Manager",
+    "username": "manager",
     "first_name": "Project",
     "last_name": "Manager",
     "email": "Project_Manager@mail.ru",
@@ -3431,9 +3579,9 @@
   "pk": 22,
   "fields": {
     "password": "pbkdf2_sha256$600000$OTOkX1F4sGz2xcFQB9KWdX$Mzj0fS1w7jtnrxJTQK4ZbQbIturFs9JzyvRAYfbHcd0=",
-    "last_login": "2023-07-31T08:38:53.662Z",
+    "last_login": "2023-07-31T09:43:09Z",
     "is_superuser": false,
-    "username": "Team_Lead",
+    "username": "lead",
     "first_name": "Team",
     "last_name": "Lead",
     "email": "Team_Lead@mail.ru",
