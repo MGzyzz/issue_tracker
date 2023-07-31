@@ -45,7 +45,9 @@
                     </button>
                 {% endif %}
                 </form>
-                <a href="{% url 'edit' task.id %}" class="link-decoration"><i class="bi bi-pencil-square me-2 ms-2"></i></a>
+                {% if perms.issue_tracker.change_task and user in project.users.all%}
+                                    <a href="{% url 'edit' task.id %}" class="link-decoration"><i class="bi bi-pencil-square me-2 ms-2"></i></a>
+                {% endif %}
                 <a href="{% url 'detail' task.id %}" class="link-decoration"><i class="bi bi-clipboard2"></i></a>
             </div>
                 {% endif %}
