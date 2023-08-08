@@ -1,13 +1,12 @@
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.http import urlencode
-from django.views.generic import TemplateView, View, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView, \
-    RedirectView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from issue_tracker.models.task import Task
 from issue_tracker.models.project import Project
 from .forms import TaskForms, ProjectForms, SearchForm
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, UserPassesTestMixin
 from accounts.models import User
 # Create your views here.
 
@@ -69,6 +68,8 @@ class Add(PermissionRequiredMixin, CreateView):
     permission_required = 'issue_tracker.add_task'
     permission_denied_message = 'You have no rights'
 
+
+
     def get_success_url(self):
         return reverse_lazy('detail_project', kwargs={'id': self.kwargs['id']})
 
@@ -80,7 +81,7 @@ class Add(PermissionRequiredMixin, CreateView):
 
 
     def form_valid(self, form):
-        form.instance.project_id = self.kwargs['id']
+        form.instance.project_id = self.request.session.get('project_id')
         return super().form_valid(form)
 
 
@@ -103,6 +104,10 @@ class Edit(UserPassesTestMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['project'] = self.object.project
         return context
+
+    def form_valid(self, form):
+        form.instance.project_id = self.request.session.get('project_id')
+        return super().form_valid(form)
 
 
 
@@ -156,6 +161,11 @@ class DetailProject(DetailView):
     context_object_name = 'project'
     pk_url_kwarg = 'id'
 
+    def dispatch(self, request, *args, **kwargs):
+        request.session['project_id'] = kwargs.get('id')
+        request.session['user_id'] = request.user.id
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         project = self.object
@@ -163,6 +173,8 @@ class DetailProject(DetailView):
         context['tasks'] = tasks
         context['form'] = TaskForms
         return context
+
+
 
 class EditProject(UserPassesTestMixin, UpdateView):
     model = Project
