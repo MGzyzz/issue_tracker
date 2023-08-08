@@ -16,7 +16,6 @@ class TaskForms(forms.ModelForm):
         widgets = {
             'summary': forms.TextInput(attrs={'class': 'partial-control mb-3'}),
             'description': forms.Textarea(attrs={'class': 'partial-control mb-3'}),
-            'project': forms.HiddenInput(),
             'status': forms.Select(attrs={'class': 'partial-select mb-3'}),
             'type': forms.Select(attrs={'class': 'partial-select mb-3'}),
         }
