@@ -9,18 +9,18 @@ from .serializers import TaskDetailSerializers, TaskUpdateSerializers
 
 
 class TaskDetailView(APIView):
-    def get(self, request, id):
+    def get(self, request, pk):
         try:
-            task = Task.objects.get(id=id)
+            task = Task.objects.get(id=pk)
             serializer = TaskDetailSerializers(task)
             return JsonResponse(serializer.data, status=200)
         except Task.DoesNotExist:
             return JsonResponse({'error': 'Task not found'}, status=404)
 
 class TaskUpdateView(APIView):
-    def put(self, request, id):
+    def put(self, request, pk):
         try:
-            task = Task.objects.get(id=id)
+            task = Task.objects.get(id=pk)
         except Task.DoesNotExist:
             return JsonResponse({'success': 'Not Work'}, status=404)
         serializer = TaskUpdateSerializers(task, data=request.data)
@@ -31,9 +31,9 @@ class TaskUpdateView(APIView):
         return JsonResponse(serializer.errors, status=400)
 
 class TaskDeleteView(APIView):
-    def delete(self, request, id):
+    def delete(self, request, pk):
         try:
-            task = Task.objects.get(id=id)
+            task = Task.objects.get(id=pk)
             task.delete()
             return JsonResponse({'message': 'Task deleted successfully'}, status=204)
         except Task.DoesNotExist:
