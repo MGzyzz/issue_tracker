@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'issue_tracker',
-    'accounts'
+    'accounts',
+    'api'
 ]
 
 MIDDLEWARE = [
