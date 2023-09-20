@@ -54,20 +54,19 @@ class Home(ListView):
 
 
 
-class Detail(DetailView):
+class TaskDetail(DetailView):
     template_name = 'detail.html'
     model = Task
     context_object_name = 'task'
     pk_url_kwarg = 'id'
 
 
-class Add(PermissionRequiredMixin, CreateView):
+class TaskAdd(PermissionRequiredMixin, CreateView):
     template_name = 'project/detail.html'
     model = Task
     form_class = TaskForms
     permission_required = 'issue_tracker.add_task'
     permission_denied_message = 'You have no rights'
-
 
 
     def get_success_url(self):
@@ -86,7 +85,7 @@ class Add(PermissionRequiredMixin, CreateView):
 
 
 
-class Edit(UserPassesTestMixin, UpdateView):
+class TaskEdit(UserPassesTestMixin, UpdateView):
     model = Task
     template_name = 'edit.html'
     form_class = TaskForms
@@ -111,7 +110,7 @@ class Edit(UserPassesTestMixin, UpdateView):
 
 
 
-class Delete(UserPassesTestMixin, DeleteView):
+class TaskDelete(UserPassesTestMixin, DeleteView):
     model = Task
     template_name = 'home.html'
     context_object_name = 'task'

@@ -3,10 +3,10 @@ from issue_tracker import views
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
-    path('detail/<int:id>', views.Detail.as_view(), name='detail'),
-    path('project/<int:id>/add', views.Add.as_view(), name='add'),
-    path('edit/<int:id>', views.Edit.as_view(), name='edit'),
-    path('<int:id>/delete', views.Delete.as_view(), name='delete'),
+    path('detail/<int:id>', views.TaskDetail.as_view(), name='detail'),
+    path('project/<int:id>/add', views.TaskAdd.as_view(), name='add'),
+    path('edit/<int:id>', views.TaskEdit.as_view(), name='edit'),
+    path('<int:id>/delete', views.TaskDelete.as_view(), name='delete'),
     path('project/', views.HomeProject.as_view(), name='home_project'),
     path('project/<int:id>', views.DetailProject.as_view(), name='detail_project'),
     path('project/add/', views.AddProject.as_view(), name='add_project'),
